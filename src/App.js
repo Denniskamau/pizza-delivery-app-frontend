@@ -1,22 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import './App.css';
 import LoginContainer from './components/Registration/Login/LoginContainer'
-import SignupContainer from './componentsRegistration//Signup/SignupContainer'
+import SignupContainer from './components/Registration/Signup/SignupContainer'
+
+import {history} from './store'
+import { ConnectedRouter } from 'connected-react-router'
+class App extends Component {
 
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <div>
+  render() {
+    return (
+
+    <Router>
+      <ConnectedRouter history={history}>
+      <div>
+
+        <Link to="/">Login</Link>
+        <Link to="/signup">Signup</Link>
+        <hr></hr>
         <Route exact path="/" component={LoginContainer}  />
         <Route path="/signup" component={SignupContainer} />
-        </div>
-      </Router>
-    </div>
-  );
+
+      </div>
+      </ConnectedRouter>
+    </Router>
+
+
+
+    )
+  }
 }
 
-export default App;
+
+export default App
