@@ -6,24 +6,42 @@ class SignupContainer extends Component {
 
   constructor(props){
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      name: '',
-      password:''
+      email: '',
+      password:'',
+      confirmPassword:''
     }
   }
 
-  handleChange(e){
+  handlePasswordChange=event=>{
     this.setState({
-      name: e.target.value
+      password: event.target.value
+    })
+  }
+  handleConfirmPasswordChange=event=>{
+    this.setState({
+      confirmPassword: event.target.value
+    })
+  }
+  handleEmailChange=event=>{
+    this.setState({
+      email: event.target.value
     })
   }
 
-  handleSubmit(e){
-    e.preventDefault();
+  passwordChecker =()=>{
+    return this.state.password === this.state.confirmPassword;
+  }
+
+  handleSubmit=event=>{
+    event.preventDefault();
     let user ={
-        name: this.state.name
+        email: this.state.email,
+        password:this.state.password
     }
     this.props.createUser(user);
   }
@@ -45,7 +63,9 @@ class SignupContainer extends Component {
           <div class="field-body">
             <div class="field">
             <p class="control has-icons-left has-icons-right">
-                <input class="input is-rounded" type="email" placeholder="example@example.com"/>
+                <input class="input is-rounded" type="email"
+                onChange={this.handleEmailChange}
+                placeholder="example@example.com"/>
                 <span class="icon is-small is-right">
                 <i class="fas fa-check"></i>
               </span>
@@ -62,7 +82,9 @@ class SignupContainer extends Component {
           <div class="field-body">
             <div class="field">
             <p class="control has-icons-left">
-                <input class="input is-rounded" type="password" placeholder="Password"/>
+                <input class="input is-rounded" type="password"
+                onChange={this.handlePasswordChange}
+                 placeholder="Password"/>
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
                 </span>
@@ -78,7 +100,9 @@ class SignupContainer extends Component {
         <div class="field-body">
           <div class="field">
           <p class="control has-icons-left">
-              <input class="input is-rounded" type="password" placeholder="Password"/>
+              <input class="input is-rounded" type="password"
+              onChange={this.handleConfirmPasswordChange}
+              placeholder="Password"/>
               <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
               </span>
@@ -90,7 +114,7 @@ class SignupContainer extends Component {
         <div class="field is-horizontal">
         <div class="field-body">
         <div class="control">
-        <button class="button is-link">Submit</button>
+        <button class="button is-link" type="submit">Submit</button>
       </div>
         </div>
 
