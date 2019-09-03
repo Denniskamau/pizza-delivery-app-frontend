@@ -1,12 +1,15 @@
-export const FETCH_DATA = 'fetch_data';
+import * as actionTypes from './types';
 
-// default function to display redux action format
-export function defaultFunction() {
-    let testVar = 'Hello';
-
-    // action object format being return to a reducer
+export const createUser = (user) => {
     return {
-        type: FETCH_DATA,
-        payload: testVar
+      type: actionTypes.CREATE_NEW_USER,
+      user: user
+    }
+  };
+
+  export const deleteUser = (id) => {
+    return {
+        type: actionTypes.REMOVE_USER,
+        id: id
     }
 }
