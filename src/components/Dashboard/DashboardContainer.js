@@ -7,45 +7,41 @@ class DashboardComponent extends Component {
 
   constructor(props){
     super(props);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePizzaChange = this.handlePizzaChange.bind(this);
+    this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.handleToppingsChange = this.handleToppingsChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
+
     this.state = {
-      email: '',
-      password:'',
-      confirmPassword:''
-    }
+      pizza: '',
+      size:'',
+      toppings:'',
+      location: ''
+      }
   }
 
-  handlePasswordChange=event=>{
+  handlePizzaChange=event=>{
     this.setState({
-      password: event.target.value
+      pizza: event.target.value
     })
   }
-  handleConfirmPasswordChange=event=>{
+  handleSizeChange=event=>{
     this.setState({
-      confirmPassword: event.target.value
+      size: event.target.value
     })
   }
-  handleEmailChange=event=>{
+  handleToppingsChange=event=>{
     this.setState({
-      email: event.target.value
+      toppings: event.target.value
+    })
+  }
+  handleLocationChange=event=>{
+    this.setState({
+      location: event.target.value
     })
   }
 
-  passwordChecker =()=>{
-    return this.state.password === this.state.confirmPassword;
-  }
 
-  handleSubmit=event=>{
-    event.preventDefault();
-    let user ={
-        email: this.state.email,
-        password:this.state.password
-    }
-    this.props.createUser(user);
-  }
 
 
   render() {
@@ -58,7 +54,7 @@ class DashboardComponent extends Component {
         <div class="container">
         <div class="column is-vcentered">
         <div class="column is-two-fifths">
-        <h3>Login Form</h3>
+        <h3>Order Form</h3>
         <form  onSubmit={this.handleSubmit}>
         <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -67,7 +63,7 @@ class DashboardComponent extends Component {
         <div class="field-body">
           <div class="field">
           <div class="select">
-          <select>
+          <select onChange={this.handlePizzaChange}>
             <option>Select dropdown</option>
             <option>With options</option>
           </select>
@@ -83,7 +79,7 @@ class DashboardComponent extends Component {
         <div class="field-body">
           <div class="field">
           <div class="select">
-          <select>
+          <select onChange={this.handleSizeChange}>
             <option>Large</option>
             <option>Medium</option>
             <option>Small</option>
@@ -101,7 +97,7 @@ class DashboardComponent extends Component {
       <div class="field-body">
         <div class="field">
         <div class="select">
-        <select>
+        <select onChange={this.handleToppingsChange}>
           <option>Large</option>
           <option>Medium</option>
           <option>Small</option>
@@ -119,7 +115,7 @@ class DashboardComponent extends Component {
         <div class="field">
         <p class="control has-icons-left">
             <input class="input is-rounded" type="text"
-            onChange={this.handleConfirmPasswordChange}
+            onChange={this.handleLocationChange}
             placeholder="Location"/>
             <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
@@ -129,20 +125,15 @@ class DashboardComponent extends Component {
       </div>
 
     </div>
-      <div class="field is-horizontal">
-      <div class="field-body">
-      <div class="control">
-      <button class="button is-link" type="submit">Submit</button>
-    </div>
-      </div>
 
-    </div>
 
         </form>
 
         </div>
         <div class="column is-half is-pulled-right">
-        <OrderContainer ></OrderContainer>
+
+        <OrderContainer pizza={this.state.pizza} size={this.state.size} location={this.state.location}
+        toppings={this.state.toppings}></OrderContainer>
         </div>
         </div>
 
