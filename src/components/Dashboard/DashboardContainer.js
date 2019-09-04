@@ -9,6 +9,7 @@ class DashboardComponent extends Component {
     super(props);
     this.handlePizzaChange = this.handlePizzaChange.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleToppingsChange = this.handleToppingsChange.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
 
@@ -16,7 +17,8 @@ class DashboardComponent extends Component {
       pizza: '',
       size:'',
       toppings:'',
-      location: ''
+      location: '',
+      quantity:''
       }
   }
 
@@ -28,6 +30,11 @@ class DashboardComponent extends Component {
   handleSizeChange=event=>{
     this.setState({
       size: event.target.value
+    })
+  }
+  handleQuantityChange=event=>{
+    this.setState({
+      quantity: event.target.value
     })
   }
   handleToppingsChange=event=>{
@@ -62,10 +69,18 @@ class DashboardComponent extends Component {
         </div>
         <div class="field-body">
           <div class="field">
-          <div class="select">
+          <div class="select is-rounded">
           <select onChange={this.handlePizzaChange}>
-            <option>Select dropdown</option>
-            <option>With options</option>
+            <option>Pizza Inn</option>
+            <option>Pepinos</option>
+            <option>Debonairs</option>
+            <option>Pomodoro</option>
+            <option>La Salumeria</option>
+            <option>La Cascina</option>
+            <option>Domino's Pizza</option>
+            <option>Que Pasa</option>
+            <option>Pizza Hut</option>
+            <option>360 Degrees Pizza</option>
           </select>
         </div>
           </div>
@@ -78,7 +93,7 @@ class DashboardComponent extends Component {
         </div>
         <div class="field-body">
           <div class="field">
-          <div class="select">
+          <div class="select is-rounded">
           <select onChange={this.handleSizeChange}>
             <option>Large</option>
             <option>Medium</option>
@@ -96,23 +111,44 @@ class DashboardComponent extends Component {
       </div>
       <div class="field-body">
         <div class="field">
-        <div class="select">
+        <div class="select is-rounded">
         <select onChange={this.handleToppingsChange}>
-          <option>Large</option>
-          <option>Medium</option>
-          <option>Small</option>
+          <option>Onios</option>
+          <option>Extra cheese</option>
+          <option>Pepperoni</option>
+          <option>bacon</option>
+          <option>Mushrooms</option>
+          <option>Green peppers</option>
         </select>
       </div>
         </div>
       </div>
 
     </div>
+    <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Quantity</label>
+    </div>
+    <div class="field-body">
+      <div class="field is-rounded">
+      <p class="control has-icons-left">
+          <input class="input is-rounded" type="text"
+          onChange={this.handleQuantityChange}
+          placeholder="Quantity"/>
+          <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+
+  </div>
       <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Location</label>
       </div>
       <div class="field-body">
-        <div class="field">
+        <div class="field is-rounded">
         <p class="control has-icons-left">
             <input class="input is-rounded" type="text"
             onChange={this.handleLocationChange}
@@ -133,7 +169,7 @@ class DashboardComponent extends Component {
         <div class="column is-half is-pulled-right">
 
         <OrderContainer pizza={this.state.pizza} size={this.state.size} location={this.state.location}
-        toppings={this.state.toppings}></OrderContainer>
+        toppings={this.state.toppings} quantity={this.state.quantity}></OrderContainer>
         </div>
         </div>
 

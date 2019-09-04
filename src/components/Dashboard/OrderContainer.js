@@ -15,10 +15,11 @@ class OrderComponent extends Component {
       pizza: this.props.pizza,
       size:this.props.size,
       toppings: this.props.toppings,
-      location:this.props.location
+      location:this.props.location,
+      quantity: this.props.quantity
     }
+    console.log('order pizza',JSON.stringify(order));
     this.props.createOrder(order);
-    // console.log('order pizza',JSON.stringify(order))
   }
   render() {
 
@@ -75,7 +76,22 @@ class OrderComponent extends Component {
         </div>
       </div>
     </div>
+    <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Quantity</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+      <p class="control has-icons-left">
+          <input class="input is-rounded" type="text"
 
+          value={this.props.quantity} disabled/>
+
+        </p>
+      </div>
+    </div>
+
+  </div>
     <div class="field is-horizontal">
     <div class="field-label is-normal">
       <label class="label">Location</label>
