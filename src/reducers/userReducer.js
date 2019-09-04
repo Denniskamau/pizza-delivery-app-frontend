@@ -6,8 +6,13 @@ export default (state = [], action) => {
       case actionTypes.CREATE_NEW_USER:
       return [
         ...state,
-        Object.assign({}, action.user)
+        Object.assign({}, action.payload)
       ];
+      case actionTypes.GET_USER:
+        return [
+          ...state,
+          Object.assign({}, action.payload)
+        ]
       default:
             return state;
     }

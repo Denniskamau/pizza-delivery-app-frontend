@@ -26,9 +26,9 @@ class LoginContainer extends Component {
 
     let user ={
         email: this.state.email,
-        pasword:this.state.password
+        password:this.state.password
     }
-    this.props.createUser(user);
+    this.props.loginUser(user);
   }
 
 
@@ -102,7 +102,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: user => dispatch(userAction.createUser(user))
+    loginUser: user => dispatch(userAction.loginUser(user))
   }
 };
 

@@ -11,7 +11,23 @@ export const createUser = (user) => {
           console.log('respose', JSON.stringify(res.data))
           dispatch({
             type: actionTypes.CREATE_NEW_USER,
-            payload: res.data
+            payload: res.data.data
+          })
+      })
+      .catch(error => {
+          //TODO: handle the error when implemented
+      })
+  }
+}
+
+export const loginUser = (user) => {
+  return (dispatch) => {
+      axios.post(`${apiURL}/login`, user)
+      .then(res => {
+          console.log('respose', JSON.stringify(res.data))
+          dispatch({
+            type: actionTypes.GET_USER,
+            payload: res.data.data
           })
       })
       .catch(error => {
