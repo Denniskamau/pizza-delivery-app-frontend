@@ -1,6 +1,6 @@
 import * as actionTypes from './types';
 
-url = ''
+var url = '';
 export const createOrder = (order) => {
     console.log('action order', JSON.stringify(order))
     return {
