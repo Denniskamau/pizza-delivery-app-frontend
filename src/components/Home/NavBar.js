@@ -11,6 +11,9 @@ class NavBar extends Component {
             this.props.loginUnSuccess();
         }
       }
+      clearSessionStorage = () => {
+          sessionStorage.removeItem('jwt')
+      }
   render() {
       if(this.props.logedin){
         return (
@@ -33,7 +36,7 @@ class NavBar extends Component {
             <div className="navbar-item">
               <div className="field">
               <p className="control">
-              <Link className="bd-tw-button button" to={'/'}>Logout</Link>
+              <Link onClick={this.clearSessionStorage} className="bd-tw-button button" to={'/'}>Logout</Link>
               </p>
               </div>
             </div>
