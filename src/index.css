@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.navbar{
+  background-color:hsl(217, 71%, 53%);
+}
+.places {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.orderform{
+  display: flex;
+  flex-direction: row;
+}
+.card {
+  width: 50% !important;
+  margin-top:5%;
+}
+.logincard{
+  width: 50% !important;
+  display: flex;
+  margin: 10%;
+
+}

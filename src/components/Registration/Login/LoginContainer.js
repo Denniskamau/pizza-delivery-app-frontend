@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as userAction from '../../../actions/userAction';
-
+import NavBar from '../../Home/NavBar';
 class LoginContainer extends Component {
 
   constructor(props){
@@ -36,10 +36,15 @@ class LoginContainer extends Component {
 
     return(
       <div>
-        <h1>Pizza App</h1>
-        <hr />
-        <div>
-          <h3>Login Form</h3>
+      <NavBar/>
+      <div className="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Login Form
+        </p>
+      </header>
+        <div className="logincard is-pilled-right">
+
           <form  onSubmit={this.handleSubmit}>
           <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -78,6 +83,7 @@ class LoginContainer extends Component {
           </div>
 
         </div>
+        
         <div class="field is-horizontal">
         <div class="field-body">
         <div class="control">
@@ -88,6 +94,7 @@ class LoginContainer extends Component {
       </div>
 
           </form>
+        </div>
         </div>
       </div>
     )

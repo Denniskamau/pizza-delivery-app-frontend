@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as userAction from '../../../actions/userAction';
-
+import NavBar from '../../Home/NavBar';
 class SignupContainer extends Component {
 
   constructor(props){
@@ -15,8 +15,15 @@ class SignupContainer extends Component {
       name:'',
       email: '',
       password:'',
-      password_confirmation:''
+      password_confirmation:'',
     }
+  }
+
+  componentWillUpdate(){
+    console.log('user will', JSON.stringify(this.state.user))
+  }
+  componentDidUpdate(){
+    console.log('user did', JSON.stringify(this.state.user))
   }
 
   handlePasswordChange=event=>{
@@ -52,18 +59,25 @@ class SignupContainer extends Component {
       password:this.state.password,
       password_confirmation:this.state.password_confirmation
     }
-    this.props.createUser(user);
+    let history = this.props.history
+    this.props.createUser(user)
+    console.log('loged ins', this.props.logedin)
   }
 
 
   render() {
 
+
     return(
       <div>
-        <h1>Pizza App</h1>
-        <hr />
-        <div>
-          <h3>Login Form</h3>
+      <NavBar/>
+        <div className="card">
+        <header class="card-header">
+        <p class="card-header-title">
+          Signup Form
+        </p>
+      </header>
+      <div className="logincard is-pilled-right">
           <form  onSubmit={this.handleSubmit}>
           <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -149,14 +163,17 @@ class SignupContainer extends Component {
 
           </form>
         </div>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('state change', state.user)
   return {
-    user: state.user
+    user: state.user.user,
+    logedin: state.user.logedin
   }
 };
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as userAction from '../../actions/userAction';
 import OrderContainer from './OrderContainer'
+import NavBar from '../Home/NavBar'
 
 class DashboardComponent extends Component {
 
@@ -55,13 +56,16 @@ class DashboardComponent extends Component {
 
     return(
       <div>
-        <h1>Pizza App</h1>
-        <hr />
-        <div class="section">
+      <NavBar/>
+        <div class="orderform">
+        <div class="card">
+
         <div class="container">
-        <div class="column is-vcentered">
+
         <div class="column is-two-fifths">
         <h3>Order Form</h3>
+
+
         <form  onSubmit={this.handleSubmit}>
         <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -86,7 +90,6 @@ class DashboardComponent extends Component {
           </div>
         </div>
       </div>
-
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Size</label>
@@ -102,9 +105,7 @@ class DashboardComponent extends Component {
         </div>
           </div>
         </div>
-
       </div>
-
       <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Toppings</label>
@@ -123,7 +124,6 @@ class DashboardComponent extends Component {
       </div>
         </div>
       </div>
-
     </div>
     <div class="field is-horizontal">
     <div class="field-label is-normal">
@@ -141,7 +141,6 @@ class DashboardComponent extends Component {
         </p>
       </div>
     </div>
-
   </div>
       <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -159,40 +158,33 @@ class DashboardComponent extends Component {
           </p>
         </div>
       </div>
-
     </div>
-
-
         </form>
+        </div>
+
 
         </div>
-        <div class="column is-half is-pulled-right">
 
+        </div>
+        <div class="card is-pulled-right">
+        <div class="column is-half ">
         <OrderContainer pizza={this.state.pizza} size={this.state.size} location={this.state.location}
         toppings={this.state.toppings} quantity={this.state.quantity}></OrderContainer>
         </div>
         </div>
-
-
-        </div>
-
-
         </div>
       </div>
     )
   }
 }
-
 const mapStateToProps = (state, ownProps) => {
   return {
     user: state.user
   }
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: user => dispatch(userAction.createUser(user))
   }
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardComponent);

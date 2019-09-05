@@ -1,6 +1,6 @@
 import * as actionTypes from './types';
 import axios from 'axios';
-
+import { history } from '../App';
 const apiURL ='http://127.0.0.1:8001/api'
 
 export const createUser = (user) => {
@@ -13,13 +13,27 @@ export const createUser = (user) => {
             type: actionTypes.CREATE_NEW_USER,
             payload: res.data.data
           })
+          history.push('/login')
       })
       .catch(error => {
-          //TODO: handle the error when implemented
+          dispatch({
+            type:actionTypes.REGISTER_FAIL
+          })
       })
   }
 }
-
+export const LoginSuccess = () => {
+    return (dispatch) => {dispatch({
+      type:actionTypes.LOGIN_SUCCESS
+    })
+  }
+}
+export const LoginUnSuccess = () => {
+  return (dispatch) => {dispatch({
+    type:actionTypes.LOGIN_FAIL
+  })
+}
+}
 export const loginUser = (user) => {
   return (dispatch) => {
       axios.post(`${apiURL}/login`, user)
@@ -29,9 +43,19 @@ export const loginUser = (user) => {
             type: actionTypes.GET_USER,
             payload: res.data.data
           })
+          sessionStorage.setItem('jwt',res.data.data.api_token)
+          if(res.data.data.email === 'admin@gmail.com'){
+            history.push('/login')
+          }else{
+            history.push('/dashboard')
+          }
+
       })
       .catch(error => {
-          //TODO: handle the error when implemented
+        dispatch({
+          type:actionTypes.LOGIN_FAIL
+        })
+        history.push('/login')
       })
   }
 }

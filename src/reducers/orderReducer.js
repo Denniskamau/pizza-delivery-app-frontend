@@ -1,6 +1,10 @@
 import * as actionTypes from '../actions/types';
 
-export default (state = [], action) => {
+const initialState = {
+    orders: [],
+    place:'peppinos'
+}
+export default (state = initialState, action) => {
     switch (action.type){
 
       case actionTypes.CREATE_ORDER:
@@ -9,10 +13,10 @@ export default (state = [], action) => {
         Object.assign({}, action.payload)
       ];
       case actionTypes.FETCH_ORDERS:
-        return [
+        return {
           ...state,
-          Object.assign({}, action.payload)
-        ]
+            orders: action.payload
+        }
       default:
             return state;
     }

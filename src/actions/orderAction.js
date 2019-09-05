@@ -20,3 +20,19 @@ console.log('order', JSON.stringify(order))
       })
   }
 }
+
+export const fetchOrder = () => {
+    return (dispatch) => {
+        axios.get(`${apiURL}/orders`)
+        .then(res => {
+            console.log('respose', JSON.stringify(res.data))
+            dispatch({
+              type: actionTypes.FETCH_ORDERS,
+              payload: res.data
+            })
+        })
+        .catch(error => {
+            //TODO: handle the error when implemented
+        })
+    }
+  }
