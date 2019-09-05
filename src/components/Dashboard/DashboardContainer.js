@@ -8,12 +8,6 @@ class DashboardComponent extends Component {
 
   constructor(props){
     super(props);
-    this.handlePizzaChange = this.handlePizzaChange.bind(this);
-    this.handleSizeChange = this.handleSizeChange.bind(this);
-    this.handleQuantityChange = this.handleQuantityChange.bind(this);
-    this.handleToppingsChange = this.handleToppingsChange.bind(this);
-    this.handleLocationChange = this.handleLocationChange.bind(this);
-
     this.state = {
       pizza: '',
       size:'',
