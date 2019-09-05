@@ -6,11 +6,6 @@ class SignupContainer extends Component {
 
   constructor(props){
     super(props);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       name:'',
       email: '',
@@ -25,27 +20,9 @@ class SignupContainer extends Component {
   componentDidUpdate(){
     console.log('user did', JSON.stringify(this.state.user))
   }
-
-  handlePasswordChange=event=>{
-    this.setState({
-      password: event.target.value
-    })
-  }
-  handleConfirmPasswordChange=event=>{
-    this.setState({
-      password_confirmation: event.target.value
-    })
-  }
-  handleEmailChange=event=>{
-    this.setState({
-      email: event.target.value
-    })
-  }
-  handleNameChange=event=>{
-    this.setState({
-      name: event.target.value
-    })
-  }
+  handleInputChange = event => {
+    this.setState({ [event.target.name]: event.target.value});
+  };
 
   passwordChecker =()=>{
     return this.state.password === this.state.password_confirmation;
@@ -53,15 +30,7 @@ class SignupContainer extends Component {
 
   handleSubmit=event=>{
     event.preventDefault();
-    let user ={
-      name:this.state.name,
-      email: this.state.email,
-      password:this.state.password,
-      password_confirmation:this.state.password_confirmation
-    }
-    let history = this.props.history
-    this.props.createUser(user)
-    console.log('loged ins', this.props.logedin)
+    this.props.createUser({...this.state})
   }
 
 
@@ -86,8 +55,8 @@ class SignupContainer extends Component {
           <div class="field-body">
             <div class="field">
             <p class="control has-icons-left has-icons-right">
-                <input class="input is-rounded" type="text"
-                onChange={this.handleNameChange}
+                <input class="input is-rounded" name="name" type="text"
+                onChange={this.handleInputChange}
                 placeholder="John Doe"/>
                 <span class="icon is-small is-right">
                 <i class="fas fa-check"></i>
@@ -104,8 +73,8 @@ class SignupContainer extends Component {
           <div class="field-body">
             <div class="field">
             <p class="control has-icons-left has-icons-right">
-                <input class="input is-rounded" type="email"
-                onChange={this.handleEmailChange}
+                <input class="input is-rounded" name="email" type="email"
+                onChange={this.handleInputChange}
                 placeholder="example@example.com"/>
                 <span class="icon is-small is-right">
                 <i class="fas fa-check"></i>
@@ -123,8 +92,8 @@ class SignupContainer extends Component {
           <div class="field-body">
             <div class="field">
             <p class="control has-icons-left">
-                <input class="input is-rounded" type="password"
-                onChange={this.handlePasswordChange}
+                <input class="input is-rounded" name="password" type="password"
+                onChange={this.handleInputChange}
                  placeholder="Password"/>
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
@@ -141,8 +110,8 @@ class SignupContainer extends Component {
         <div class="field-body">
           <div class="field">
           <p class="control has-icons-left">
-              <input class="input is-rounded" type="password"
-              onChange={this.handleConfirmPasswordChange}
+              <input class="input is-rounded" name="password_confirmation" type="password"
+              onChange={this.handleInputChange}
               placeholder="Password"/>
               <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>

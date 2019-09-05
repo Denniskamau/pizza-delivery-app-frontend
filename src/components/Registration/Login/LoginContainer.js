@@ -6,29 +6,18 @@ class LoginContainer extends Component {
 
   constructor(props){
     super(props);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       email: '',
       password:''
     }
   }
-  handleEmailChange = event => {
-    this.setState({ email: event.target.value });
+  handleInputChange = event => {
+    this.setState({ [event.target.name]: event.target.value});
   };
-  handlePasswordChange = event =>{
-    this.setState({password: event.target.value})
-  }
 
   handleSubmit= event =>{
     event.preventDefault();
-
-    let user ={
-        email: this.state.email,
-        password:this.state.password
-    }
-    this.props.loginUser(user);
+    this.props.loginUser({...this.state});
   }
 
 
@@ -53,8 +42,8 @@ class LoginContainer extends Component {
           <div class="field-body">
             <div class="field">
             <p class="control has-icons-left has-icons-right">
-                <input class="input is-rounded" name="email" value={this.state.value} type="email"
-                onChange={this.handleEmailChange}
+                <input class="input is-rounded" name="email" type="email"
+                onChange={this.handleInputChange}
                 placeholder="example@example.com"/>
                 <span class="icon is-small is-right">
                 <i class="fas fa-check"></i>
@@ -73,7 +62,7 @@ class LoginContainer extends Component {
             <div class="field">
             <p class="control has-icons-left">
                 <input class="input is-rounded" name="password" type="password"
-                onChange={this.handlePasswordChange}
+                onChange={this.handleInputChange}
                 placeholder="Password"/>
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
@@ -83,7 +72,7 @@ class LoginContainer extends Component {
           </div>
 
         </div>
-        
+
         <div class="field is-horizontal">
         <div class="field-body">
         <div class="control">

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Router } from 'react-router'
-import { Route, Link,Switch } from "react-router-dom"
+import { Route,Switch } from "react-router-dom"
 import LoginContainer from './components/Registration/Login/LoginContainer'
 import SignupContainer from './components/Registration/Signup/SignupContainer'
 import DashboardContainer from './components/Dashboard/DashboardContainer'
 import Home from './components/Home/HomeContainer'
-import { ConnectedRouter } from 'connected-react-router'
+import AdminPage from './components/Dashboard/AdminContainer';
 import createBrowserHistory from 'history/createBrowserHistory'
+import AdminContainer from './components/Dashboard/AdminContainer';
 
 export const history = createBrowserHistory()
 
@@ -22,6 +23,7 @@ class App extends Component {
       <Route exact path="/login" component={LoginContainer}/>
       <Route path="/signup" component={SignupContainer} />
       <Route path="/dashboard" component={DashboardContainer} />
+      <Route path="/admin" component={AdminContainer} />
       </Switch>
 
     </div>

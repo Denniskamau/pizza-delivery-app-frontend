@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as orderAction from '../../actions/orderAction';
-
+import NavBar from '../Home/NavBar'
 class OrderComponent extends Component {
 
   componentWillMount () {
@@ -14,14 +14,18 @@ class OrderComponent extends Component {
     if(!this.props.orders) {
       return (
         <div>
+        <NavBar/>
           No Orders
         </div>
       )
     }
     return(
       <div>
-      <p>{this.props.orders}</p>
-
+      <NavBar/>
+      <p>hallo</p>
+        <p>{Object.keys(this.props.orders).map((key,value)=>{
+          return <div>Key:{key}, Value:{value}</div>
+        })}</p>
       </div>
     )
   }
