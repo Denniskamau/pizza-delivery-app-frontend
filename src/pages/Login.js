@@ -42,7 +42,7 @@ class Login extends Component {
                   <div className="field">
                     <label className="label">Email</label>
                     <div className="control has-icons-left">
-                      <input className="input" type="email" placeholder="Email" onChange={ this.handleInputChange } />
+                      <input className="input" type="email" name="email" placeholder="Email" onChange={ this.handleInputChange } />
                       <span className="icon is-small is-left">
                         <i className="fas fa-envelope"></i>
                       </span>
@@ -51,7 +51,7 @@ class Login extends Component {
                   <div className="field">
                     <label className="label">Password</label>
                     <div className="control has-icons-left has-icons-right">
-                      <input className="input" type="password" placeholder="password" onChange={ this.handleInputChange } />
+                      <input className="input" type="password" name="password" placeholder="password" onChange={ this.handleInputChange } />
                       <span className="icon is-small is-left">
                         <i className="fas fa-lock"></i>
                       </span>

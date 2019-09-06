@@ -1,11 +1,12 @@
 import * as actionTypes from './types';
-import $http from 'axios';
-
+import axios from 'axios';
+import { history } from '../App';
+const apiURL ='http://127.0.0.1:8001/api'
 
 
 export const createOrder = (order) => {
   return (dispatch) => {
-      $http.post({ url: '/orders', data: order })
+    axios.post(`${apiURL}/orders`, order)
       .then(res => {
           dispatch({
             type: actionTypes.CREATE_ORDER,
@@ -20,7 +21,7 @@ export const createOrder = (order) => {
 
 export const fetchOrder = () => {
     return (dispatch) => {
-        $http.get({ url: '/orders' })
+      axios.get(`${apiURL}/orders`)
         .then(res => {
             dispatch({
               type: actionTypes.FETCH_ORDERS,

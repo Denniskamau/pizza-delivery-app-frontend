@@ -9,10 +9,6 @@ import card_image from '../assets/images/payment.jpg';
 
 class Order extends Component {
 
-  constructor(props){
-    super(props);
-    this.postOrder = this.postOrder.bind(this);
-  };
 
   postOrder = (e) => {
     e.preventDefault();
@@ -23,6 +19,7 @@ class Order extends Component {
       location: this.props.location,
       quantity: this.props.quantity,
     };
+    console.log('order', JSON.stringify(order))
     this.props.createOrder(order);
   };
 
@@ -84,7 +81,7 @@ class Order extends Component {
               </div>
             </div>
             <div className="field">
-              <button className="button is-dark is-fullwidth">Confirm Order</button>
+              <button  type="submit" className="button is-dark is-fullwidth">Confirm Order</button>
             </div>
           </form>
         </div>
