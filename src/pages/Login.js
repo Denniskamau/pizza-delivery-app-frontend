@@ -67,14 +67,14 @@ class Login extends Component {
                     <label className="label">Email</label>
                     <div className="control has-icons-left">
                       <input className="input" type="email" name="email" placeholder="Email" onChange={ this.handleInputChange } />
-                      <span className="error">{this.state.errors["email"]}</span>
+                      <span style={{color: "red"}} className="error">{this.state.errors["email"]}</span>
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Password</label>
                     <div className="control has-icons-left has-icons-right">
                       <input className="input" type="password" name="password" placeholder="password" onChange={ this.handleInputChange } />
-                      <span className="error">{this.state.errors["password"]}</span>
+                      <span style={{color: "red"}} className="error">{this.state.errors["password"]}</span>
                     </div>
                   </div>
                   <div className="field">

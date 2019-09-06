@@ -16,6 +16,7 @@ class Register extends Component {
       email: '',
       password:'',
       password_confirmation:'',
+      errors:{}
     };
   }
 
@@ -26,7 +27,36 @@ class Register extends Component {
   componentDidUpdate(){
     console.log('user did', JSON.stringify(this.state.user));
   }
-
+  handleValidation = () => {
+    let errors = {};
+    let formIsValid = true;
+    if(!this.state.name){
+      formIsValid = false;
+      errors["name"] = "name is required";
+    }
+    if(!this.state.email){
+      formIsValid = false;
+      errors["email"] = "Email is required";
+    }
+    if(!this.state.password){
+      formIsValid =false;
+      errors["password"] = "Password is required";
+    }
+    if(this.state.password.length < 8){
+      formIsValid =false;
+      errors["password"] = "Password should be greater than 8 characters";
+    }
+    if(!this.state.password_confirmation){
+      formIsValid =false;
+      errors["password_confirmation"] = "Password confirmation is required";
+    }
+    if(this.state.password_confirmation === this.state.password){
+      formIsValid =false;
+      errors["password_confirmation"] = "Password must match confirmation";
+    }
+    this.setState({errors: errors});
+    return formIsValid;
+  }
   handleInputChange = event => {
     this.setState({ [ event.target.name ]: event.target.value });
   }
@@ -37,7 +67,18 @@ class Register extends Component {
 
   handleSubmit=event=>{
     event.preventDefault();
-    this.props.createUser({ ...this.state });
+    if(this.handleValidation()){
+      let user = {
+        "name":this.state.name,
+        "email": this.state.email,
+        "password":this.state.password,
+        "password_confirmation":this.state.password_confirmation,
+      }
+      this.props.createUser(user);
+    }else{
+      alert("Form has errors.")
+    }
+
   }
 
   render () {
@@ -57,36 +98,28 @@ class Register extends Component {
                     <label className="label">Name</label>
                     <div className="control has-icons-left">
                       <input className="input" type="text" placeholder="name" name="name" onChange={ this.handleInputChange } />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-user"></i>
-                      </span>
+                      <span style={{color: "red"}} className="error">{this.state.errors["name"]}</span>
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Email</label>
                     <div className="control has-icons-left">
                       <input className="input" type="email" placeholder="Email" name="email" onChange={ this.handleInputChange } />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-envelope"></i>
-                      </span>
+                      <span style={{color: "red"}} className="error">{this.state.errors["email"]}</span>
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Password</label>
                     <div className="control has-icons-left has-icons-right">
                       <input className="input" type="password" placeholder="password" name="password" onChange={ this.handleInputChange } />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                      </span>
+                      <span style={{color: "red"}} className="error">{this.state.errors["password"]}</span>
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Confirm Password</label>
                     <div className="control has-icons-left has-icons-right">
                       <input className="input" type="password" placeholder="confirm password" name="password_confirmation" onChange={ this.handleInputChange } />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                      </span>
+                      <span style={{color: "red"}} className="error">{this.state.errors["password_confirmation"]}</span>
                     </div>
                   </div>
                   <div className="field">
