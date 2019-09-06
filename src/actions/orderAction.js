@@ -1,6 +1,8 @@
 import * as actionTypes from './types';
 import axios from 'axios';
 import { history } from '../App';
+import { toast } from 'react-toastify';
+
 const apiURL ='https://my-pizza-app-api.herokuapp.com/api'
 
 
@@ -12,6 +14,7 @@ export const createOrder = (order) => {
             type: actionTypes.CREATE_ORDER,
             payload: res.data.data
           })
+          toast('Order Created')
       })
       .catch(error => {
           //TODO: handle the error when implemented

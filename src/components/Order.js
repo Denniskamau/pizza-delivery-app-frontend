@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import * as orderAction from '../actions/orderAction';
 
 import card_image from '../assets/images/payment.jpg';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class Order extends Component {
 
 
@@ -21,6 +22,7 @@ class Order extends Component {
     };
     console.log('order', JSON.stringify(order))
     this.props.createOrder(order);
+    toast.success('Order created')
   };
 
   render () {
@@ -84,6 +86,7 @@ class Order extends Component {
               <button  type="submit" className="button is-dark is-fullwidth">Confirm Order</button>
             </div>
           </form>
+
         </div>
       </div>
     )

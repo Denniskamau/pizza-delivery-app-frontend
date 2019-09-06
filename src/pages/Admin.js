@@ -10,7 +10,8 @@ import Order from '../components/Order';
 import Navbar from '../components/Navbar';
 
 import no_data from '../assets/images/no-data.svg';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class Admin extends Component {
 
   componentWillMount () {
@@ -20,6 +21,7 @@ class Admin extends Component {
   deleteOrder = (e,id)=> {
     e.preventDefault();
     this.props.deleteOrder(id);
+    toast.success('Order Deleted')
   }
 
   render () {
@@ -50,7 +52,7 @@ class Admin extends Component {
                           <th>No. Pizzas</th>
                           <th>Location</th>
                           <th>Action</th>
-                         
+
                         </tr>
                       </thead>
                       <tbody>

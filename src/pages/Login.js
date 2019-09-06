@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import * as userAction from '../actions/userAction';
 
 import Navbar from '../components/Navbar';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class Login extends Component {
 
   constructor(props){
@@ -45,7 +46,7 @@ class Login extends Component {
       }
       this.props.loginUser(user);
     }else{
-      alert("Form has errors.")
+      toast.error('Email or password is incorrect')
     }
 
   }
@@ -83,6 +84,7 @@ class Login extends Component {
                     </div>
                   </div>
                 </form>
+               
               </div>
               <div className="column is-two-fifths">
                 <img src="../assets/images/login.svg" alt="" />

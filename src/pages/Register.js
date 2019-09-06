@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import * as userAction from '../actions/userAction';
 
 import Navbar from '../components/Navbar';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class Register extends Component {
   constructor(props){
     super(props);
@@ -70,7 +71,7 @@ class Register extends Component {
       }
       this.props.createUser(user);
     }else{
-      alert("Form has errors.")
+      toast.error('Form has errors')
     }
 
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Router } from 'react-router';
 import { Route,Switch } from "react-router-dom";
 import { createBrowserHistory } from 'history';
-
+import { ToastContainer } from 'react-toastify';
 // import the pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -19,6 +19,8 @@ class App extends Component {
 
   render() {
     return (
+      <div className="App">
+      <ToastContainer/>
       <Router history={history}>
         <div>
           <Switch>
@@ -32,6 +34,7 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
+      </div>
     )
   }
 }
