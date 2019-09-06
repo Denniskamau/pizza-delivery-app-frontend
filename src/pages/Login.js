@@ -14,16 +14,40 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password:''
+      password:'',
+      errors:{}
     }
   }
   handleInputChange = event => {
     this.setState({ [ event.target.name ]: event.target.value });
   };
+  handleValidation = () => {
+    let errors = {};
+    let formIsValid = true;
+    if(!this.state.email){
+      formIsValid = false;
+      errors["email"] = "Email is required";
+    }
+    if(!this.state.password){
+      formIsValid =false;
+      errors["password"] = "Password is required";
+    }
+    this.setState({errors: errors});
+    return formIsValid;
+  }
 
   handleSubmit= event =>{
     event.preventDefault();
-    this.props.loginUser({ ...this.state });
+    if(this.handleValidation()){
+      let user ={
+        "email": this.state.email,
+        "password":this.state.password
+      }
+      this.props.loginUser(user);
+    }else{
+      alert("Form has errors.")
+    }
+
   }
 
   render() {
@@ -43,18 +67,14 @@ class Login extends Component {
                     <label className="label">Email</label>
                     <div className="control has-icons-left">
                       <input className="input" type="email" name="email" placeholder="Email" onChange={ this.handleInputChange } />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-envelope"></i>
-                      </span>
+                      <span className="error">{this.state.errors["email"]}</span>
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Password</label>
                     <div className="control has-icons-left has-icons-right">
                       <input className="input" type="password" name="password" placeholder="password" onChange={ this.handleInputChange } />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                      </span>
+                      <span className="error">{this.state.errors["password"]}</span>
                     </div>
                   </div>
                   <div className="field">

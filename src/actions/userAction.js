@@ -1,7 +1,7 @@
 import * as actionTypes from './types';
 import axios from 'axios';
 import { history } from '../App';
-const apiURL ='http://127.0.0.1:8001/api'
+const apiURL ='https://my-pizza-ordering-app.herokuapp.com/api'
 
 export const createUser = (user) => {
   console.log('user', JSON.stringify(user))
