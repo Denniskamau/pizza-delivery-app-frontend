@@ -1,15 +1,12 @@
 import * as actionTypes from './types';
-import axios from 'axios';
+import $http from 'axios';
 
-const apiURL ='http://127.0.0.1:8001/api'
 
 
 export const createOrder = (order) => {
-console.log('order', JSON.stringify(order))
   return (dispatch) => {
-      axios.post(`${apiURL}/orders`, order)
+      $http.post({ url: '/orders', data: order })
       .then(res => {
-          console.log('respose', JSON.stringify(res.data))
           dispatch({
             type: actionTypes.CREATE_ORDER,
             payload: res.data.data
@@ -17,15 +14,14 @@ console.log('order', JSON.stringify(order))
       })
       .catch(error => {
           //TODO: handle the error when implemented
-      })
+      });
   }
 }
 
 export const fetchOrder = () => {
     return (dispatch) => {
-        axios.get(`${apiURL}/orders`)
+        $http.get({ url: '/orders' })
         .then(res => {
-            console.log('respose', JSON.stringify(res.data))
             dispatch({
               type: actionTypes.FETCH_ORDERS,
               payload: res.data
