@@ -20,13 +20,7 @@ class Register extends Component {
     };
   }
 
-  componentWillUpdate(){
-    console.log('user will', JSON.stringify(this.state.user));
-  }
 
-  componentDidUpdate(){
-    console.log('user did', JSON.stringify(this.state.user));
-  }
   handleValidation = () => {
     let errors = {};
     let formIsValid = true;
@@ -50,7 +44,7 @@ class Register extends Component {
       formIsValid =false;
       errors["password_confirmation"] = "Password confirmation is required";
     }
-    if(this.state.password_confirmation === this.state.password){
+    if(this.state.password_confirmation !== this.state.password){
       formIsValid =false;
       errors["password_confirmation"] = "Password must match confirmation";
     }
