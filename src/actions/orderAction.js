@@ -33,3 +33,28 @@ export const fetchOrder = () => {
         })
     }
   }
+
+  export const deleteOrder = (id) => {
+    console.log('id', id)
+    return (dispatch) => {
+      axios.delete(`${apiURL}/orders/${id}`)
+      .then(res => {
+        dispatch({
+          type: actionTypes.DELETE_ORDER,
+          payload: res.data.data
+        })
+      })
+    }
+  }
+
+  export const updateOrder = (id) => {
+    return (dispatch) => {
+      axios.put(`${apiURL}/orders/${id}`)
+      .then(res => {
+        dispatch({
+          type: actionTypes.UPDATE_ORDER,
+          payload: res.data
+        })
+      })
+    }
+  }

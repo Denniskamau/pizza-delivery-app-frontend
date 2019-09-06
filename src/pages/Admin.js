@@ -17,7 +17,13 @@ class Admin extends Component {
     this.props.fetchOrder();
   };
 
+  deleteOrder = (e,id)=> {
+    e.preventDefault();
+    this.props.deleteOrder(id);
+  }
+
   render () {
+   const {orders} = this.props
     return (
       <div className="hero is-fullheight">
         <div className="hero-head">
@@ -32,6 +38,8 @@ class Admin extends Component {
                       <img src={no_data} alt={"no_data"} />
                     </figure>
                   ) : (
+                    <div>
+                    <p>All Orders</p>
                     <table className="table">
                       <thead>
                         <tr>
@@ -41,18 +49,27 @@ class Admin extends Component {
                           <th>Toppings</th>
                           <th>No. Pizzas</th>
                           <th>Location</th>
+                          <th>Action</th>
+                         
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                        </tr>
+                    { orders.map((order)=>(
+                      <tr>
+                      <td>{order.id}</td>
+                      <td>{order.pizza}</td>
+                      <td>{order.size}</td>
+                      <td>{order.toppings}</td>
+                      <td>{order.quantity}</td>
+                      <td>{order.location}</td>
+                      <td><button className="button is-danger" onClick={ (e) =>{this.deleteOrder(e,order.id)}}>Delete</button></td>
+                    </tr>
+                    ))
+
+                }
                       </tbody>
                     </table>
+                    </div>
                   ) }
               </div>
             </div>
@@ -64,13 +81,15 @@ class Admin extends Component {
 
 }
 
-const mapStateToProps = state => ({
-  orders: state.orders.orders,
-});
+const mapStateToProps = state => {
+  return {orders: state.orders.orders}
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchOrder: order => dispatch(orderAction.fetchOrder())
+    fetchOrder: order => dispatch(orderAction.fetchOrder()),
+    deleteOrder: order => dispatch(orderAction.deleteOrder(order)),
+    updateOrder: order => dispatch(orderAction.updateOrder(order)),
   }
 };
 

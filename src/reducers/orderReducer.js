@@ -17,6 +17,16 @@ export default (state = initialState, action) => {
           ...state,
             orders: action.payload
         }
+        case actionTypes.DELETE_ORDER:
+          return {
+            ...state,
+              orders: action.payload
+          }
+          case actionTypes.UPDATE_ORDER:
+            return {
+              ...state,
+                orders: action.payload
+            }
       default:
             return state;
     }

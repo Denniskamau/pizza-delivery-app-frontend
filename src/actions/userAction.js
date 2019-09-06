@@ -46,9 +46,9 @@ export const loginUser = (user) => {
           })
           sessionStorage.setItem('jwt',res.data.data.api_token)
           if(res.data.data.email === 'admin@gmail.com'){
-            history.push('/login')
+            history.push('/admin')
           }else{
-            history.push('/dashboard')
+            history.push('/order')
           }
 
       })

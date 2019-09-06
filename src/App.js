@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
+import Update from './pages/Update';
 
 export const history = createBrowserHistory()
 
@@ -25,8 +26,9 @@ class App extends Component {
             <Route exact path="/about" component={ About }/>
             <Route exact path="/login" component={ Login }/>
             <Route exact path="/register" component={ Register }/>
-            <Route path="/dashboard" component={ Dashboard } />
+            <Route path="/order" component={ Dashboard } />
             <Route path="/admin" component={ Admin } />
+            <Route path="/update" component={ Update } />
           </Switch>
         </div>
       </Router>
